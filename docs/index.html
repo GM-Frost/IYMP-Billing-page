@@ -6,15 +6,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
+
+    /* ===== Animations ===== */
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    /* Accessibility: respect reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
+
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background-color: #323339;
       color: #ffffff;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      background-color: #ffffff;
     }
 
     .container {
@@ -25,8 +52,10 @@
     }
 
     .logo {
-      width: 72px;
+      height: 220px;
+      width: auto;
       margin-bottom: 24px;
+      animation: fadeIn 0.8s ease-out both;
     }
 
     h1 {
@@ -52,6 +81,8 @@
       text-decoration: none;
       border-radius: 8px;
       font-weight: 600;
+      animation: fadeUp 0.9s ease-out both;
+      animation-delay: 0.35s;
       transition: background-color 0.2s ease;
     }
 
@@ -65,6 +96,19 @@
       color: #9ca3af;
       line-height: 1.5;
     }
+
+    .billing-card{
+      box-shadow: 0 4px 8px 0 rgba(247, 199, 79,0.02);
+      transition: 0.3s;
+      border-radius: 10px;
+      background-color: #108c54;
+      padding: 5px;
+      animation: fadeUp 0.9s ease-out both;
+      animation-delay: 0.15s;
+    }
+    .billing-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
   </style>
 </head>
 
@@ -73,21 +117,23 @@
 
     <!-- Logo -->
     <img
-      src="./src/assets/logo.jpg"
+      src="./src/assets/logo.png"
       alt="Grow In IYMP"
       class="logo"
     />
 
-    <h1>Billing Update Complete</h1>
+    <div class="billing-card">
+      <h1 style="color: #f7be47;">Billing Update Complete</h1>
 
-    <p>
-      Your subscription changes have been processed successfully.
-      <br /><br />
-      If you updated or canceled your subscription, your access will remain active
-      until the end of your current billing period.
-      No further action is required.
-    </p>
+      <p style="color: #ffffff;">
+        Your subscription changes have been processed successfully.
+        <br /><br />
+        If you updated or canceled your subscription, your access will remain active
+        until the end of your current billing period.
+        No further action is required.
+      </p>
 
+    </div>
     <a
       href="https://discord.com/channels/1377688417009406064/1414466232115138615"
       class="cta"
@@ -96,8 +142,7 @@
     </a>
 
     <div class="footer">
-      Payments are processed securely by Stripe.<br />
-      Educational use only. Not financial advice.
+      Payments are processed securely by <span style="color:#4752c4; font-weight: bold;">Stripe.</span><br />
     </div>
 
   </div>
